@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :profile,              presence: true
   validates :occupation,           presence: true  
   validates :position,             presence: true
-  validates :dpasswor_confimation, presence: true
+  validates :reset_password_token, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
