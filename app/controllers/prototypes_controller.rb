@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :index, :new]
+  before_action :authenticate_user!, except: [:show, :index, :new]
   #↑全てのアクションの前に、ユーザーがログインしているかどうか確認する！
   #ただし、showアクションと、indexアクションと、newアクションが呼び出された場合は、除く
   before_action :move_to_index, only: [:edit, :update, :destroy]
