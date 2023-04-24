@@ -14,24 +14,27 @@ class PrototypesController < ApplicationController
 
   def create
     @prototype = Prototype.new(prototype_params)
-    Prototype.create
-    if @prototype.save
+    #↑新規投稿を実行する
+    Prototype.create #←実行された投稿を保存
+    if @prototype.save #←もし、新規投稿が正常に保存された場合、index画面へ戻る。
       redirect_to action: 'index'
     else
-      @prototype = Prototype.new(prototype_params)
+      @prototype = Prototype.new(prototype_params) #←新規投稿が正常に保存されなかったら値を保持した状態で、新規投稿画面に留まる
       render :new
     end
   end
 
   def destroy
     @prototype = Prototype.find(params[:id])
-    @prototype.destroy
+                                 #↑prototypesテーブルの(params[:id])を削除
+    @prototype.destroy                                  #↑paramsとして送られてきたデータ
     redirect_to action: 'index'
   end  
 
   def edit    
     @prototype = Prototype.find(params[:id])
-  end
+                                 #↑prototypesテーブルの(params[:id])を編集
+  end                                                   #↑paramsとして送られてきたデータ
 
   def update
     @prototype = Prototype.find(params[:id])
@@ -40,7 +43,7 @@ class PrototypesController < ApplicationController
       #↑updateアクションにデータを更新する記述をし、更新されれば、詳細画面へ戻る。
     else    
       render :edit
-      #↑updateアクションで更新ができなかったときは、編集画面へ戻る。
+      #↑updateアクションで更新ができなかったときは、renderで値を保持した状態で編集画面へ留まる。
     end  
   end
 

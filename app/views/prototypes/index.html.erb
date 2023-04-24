@@ -6,6 +6,7 @@
         <%= "こんにちは" %>
         <%= link_to current_user.name, user_path(current_user), class: :greeting__link%>
         <%= "さん" %>
+        <%#ログイン中のユーザー名をクリックするとそのユーザーのマイページに飛ぶ。deviseのGemを用いることによって使えるcurrent_user。%>
       </div>
     <% end %> 
     <%# // ログインしているときは上記を表示する %>

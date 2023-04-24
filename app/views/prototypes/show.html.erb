@@ -5,11 +5,12 @@
         <%= @prototype.title %>
       </p>
       <%= link_to "by" + @prototype.user.name, user_path(@prototype.user.id), class: :prototype__user %>
-      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <%# 誰による投稿か、名前が表示されている部分のコード。showアクションの中で、@prototype = Prototype.find(params[:id])と一つのレコードを選び出し ているため、prototypeとアソシエーションしているuserのidを取得できる。%>
       <% if user_signed_in? && current_user.id == @prototype.user_id %>   
         <div class="prototype__manage">
           <%= link_to "編集する", edit_prototype_path(@prototype), class: :prototype__btn %>
           <%= link_to "削除する", prototype_path(@prototype), method: :delete, class: :prototype__btn %>
+          <%# //投稿したものの詳細ページから、編集したり、削除したりする部分。showアクションの中で、@prototype = Prototype.find(params[:id])と一つのレコードを選び出しているため、どのprototypeを編集・削除するか判断ができる。 %>
         </div>
       <% end %>               
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
@@ -50,6 +51,7 @@
             <% @comments.each do |comment| %>            
               <%= comment.content %>
               <%= link_to comment.user.name, user_path(comment.user.id), class: :comment_user %>
+              <%#誰のコメントか表示されているところのコード。each文で|ブロックパラメーター（変数）にcomment|が入り、commentとアソシエーションしているuserのidを取得。%>
               </li>
              <% end %>
               <%# <%= " コメントのテキスト "%>
